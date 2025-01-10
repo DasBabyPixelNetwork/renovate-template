@@ -1,0 +1,70 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "hostRules": [
+    {
+      "matchHost": "https://reposilite.dasbabypixel.de/dasbabypixel",
+      "hostType": "maven",
+      "username": "{{ secrets.MAVEN_DASBABYPIXEL_USERNAME }}",
+      "password": "{{ secrets.MAVEN_DASBABYPIXEL_PASSWORD }}"
+    },
+    {
+      "matchHost": "https://repo1.maven.org/maven2/",
+      "enabled": false
+    },
+    {
+      "matchHost": "docker.io",
+      "enabled": false
+    }
+  ],
+  "env": {
+    "ORG_GRADLE_PROJECT_DasBabyPixelUsername": "{{ secrets.MAVEN_DASBABYPIXEL_USERNAME }}",
+    "ORG_GRADLE_PROJECT_DasBabyPixelPassword": "{{ secrets.MAVEN_DASBABYPIXEL_PASSWORD }}"
+  },
+  "automergeType": "branch",
+  "ignoreDeps": [
+    "net.minestom:minestom-snapshots"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "gradle"
+      ],
+      "registryUrls": [
+        "https://reposilite.dasbabypixel.de/dasbabypixel"
+      ]
+    },
+    {
+      "matchPackagePatterns": [
+        "^eu.cloudnetservice.cloudnet"
+      ],
+      "allowedVersions": "!/-SNAPSHOT$/"
+    },
+    {
+      "description": "Enable automerge for minor and patch releases",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
+      "description": "Prevent upgrading from stable to SNAPSHOT/pre-release versions",
+      "matchCurrentVersion": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/",
+      "allowedVersions": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/"
+    },
+    {
+      "description": "Prevent upgrading from any pre-release to SNAPSHOT",
+      "matchCurrentVersion": "/-(alpha|beta|rc)[.\\d]*$/",
+      "allowedVersions": "!/-SNAPSHOT$/"
+    },
+    {
+      "description": "Prevent upgrading from timestamped SNAPSHOT like 2.0.0-20250520.005113-167",
+      "matchCurrentVersion": "/-\\d{8}\\.\\d{6}-\\d+$/",
+      "enabled": false
+    }
+  ]
+}
