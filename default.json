@@ -29,7 +29,8 @@
   },
   "automergeType": "branch",
   "ignoreDeps": [
-    "net.minestom:minestom-snapshots"
+    "net.minestom:minestom-snapshots",
+    "com.mojang:brigadier"
   ],
   "packageRules": [
     {
