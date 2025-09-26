@@ -11,6 +11,10 @@
       "password": "{{ secrets.MAVEN_DASBABYPIXEL_PASSWORD }}"
     },
     {
+      "matchHost": "https://repo.maven.apache.org/maven2/",
+      "enabled": false
+    },
+    {
       "matchHost": "https://repo1.maven.org/maven2/",
       "enabled": false
     },
