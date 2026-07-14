@@ -74,9 +74,10 @@
     {
       "description": "Apply custom regex versioning for 26.2.1-rc1.build.23-beta scheme",
       "matchPackagePatterns": [
-        "^io\\.papermc\\.paper"
+        "^io\\.papermc\\.paper:dev-bundle",
+        "^io\\.papermc\\.paper:paper-api"
       ],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(?:\\.(?<patch>\\d+))?(?:-(?<compatibility>rc\\d+))?\\.build\\.(?<build>\\d+)(?:-(?<prerelease>alpha|beta))?$"
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(?:\\.(?<patch>\\d+))?(?:-(?<compatibility>rc-?\\d+))?\\.build\\.(?<build>\\d+)(?:-(?<prerelease>alpha|beta))?$"
     }
   ]
 }
